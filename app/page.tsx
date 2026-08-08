@@ -192,8 +192,8 @@ const PROJECTS: Project[] = [
         group: "Architecture multi-sites",
         items: [
           "Fusion de 3 sites / enseignes en une plateforme unique et interconnectée",
-          "Identité visuelle et catalogue propres à chaque enseigne (ex. Cali Boyz 31, Cali Boyz 94, livraison dédiée)",
-          "Routage dédié par boutique (/enseigne-a, /enseigne-b, /enseigne-c)",
+          "Identité visuelle et catalogue propres à chaque enseigne",
+          "Routage dédié par boutique (une URL / un univers par marque)",
           "Catalogue filtré par région / shop (visibilité produit par plateforme)",
           "Compte client unifié : une authentification, accès à toutes les enseignes liées",
           "Données partagées intelligemment (users, commandes taguées par shop, messagerie)",
