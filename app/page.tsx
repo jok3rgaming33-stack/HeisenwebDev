@@ -420,102 +420,94 @@ export default function Home() {
           {/* Work */}
           <section id="travail" className="scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20">
             <div className="mx-auto max-w-6xl">
-              <div className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+              <div className="mb-5 flex flex-col gap-1 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-[#8ec5ff]">
+                  <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.22em] text-[#8ec5ff]">
                     Réalisations
                   </p>
                   <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
                     Ce que je construis
                   </h2>
                 </div>
-                <p className="max-w-sm text-xs text-slate-500 sm:text-right sm:text-sm">
-                  Trois projets distincts — périmètre fonctionnel complet.
+                <p className="max-w-xs text-xs text-slate-500 sm:text-right">
+                  Trois projets distincts — détail fonctionnel.
                 </p>
               </div>
 
-              <div className="grid gap-4">
+              <div className="flex flex-col gap-3">
                 {PROJECTS.map((p, i) => {
                   const totalFeatures = p.features.reduce((n, g) => n + g.items.length, 0)
                   return (
                     <article
                       key={p.title}
-                      className="card-shine group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0b0f18] p-4 transition-colors hover:border-white/12 sm:p-5 md:p-6"
+                      className="card-shine relative overflow-hidden rounded-xl border border-white/[0.08] bg-[#0b0f18] px-4 py-3.5 sm:px-5 sm:py-4"
                     >
-                      <div
-                        className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full opacity-15 blur-3xl"
-                        style={{ background: p.accent }}
-                        aria-hidden="true"
-                      />
-
-                      {/* En-tête compact */}
-                      <div className="relative flex flex-col gap-2 border-b border-white/[0.06] pb-3 sm:gap-2.5 sm:pb-3.5">
-                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                          <span className="font-mono text-[10px] text-slate-600">
+                      {/* En-tête : une seule colonne, stack sous le pitch */}
+                      <header className="relative border-b border-white/[0.06] pb-2.5">
+                        <div className="mb-1 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                          <span className="font-mono text-[10px] tabular-nums text-slate-600">
                             {String(i + 1).padStart(2, "0")}
                           </span>
                           <span
-                            className="rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider"
+                            className="rounded px-1.5 py-px text-[9px] font-bold uppercase tracking-wider"
                             style={{
                               background: `${p.accent}18`,
                               color: p.accent,
-                              border: `1px solid ${p.accent}33`,
+                              border: `1px solid ${p.accent}40`,
                             }}
                           >
                             {p.tag}
                           </span>
                           <span className="font-mono text-[10px] text-slate-600">
-                            {totalFeatures} features
+                            {totalFeatures} fonctionnalités
                           </span>
                         </div>
-                        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                          <div className="min-w-0 flex-1">
-                            <h3 className="font-display text-lg font-bold leading-snug tracking-tight text-white sm:text-xl">
-                              {p.title}
-                            </h3>
-                            <p className="mt-1.5 text-[12.5px] leading-snug text-slate-400 sm:text-[13px]">
-                              {p.pitch}
-                            </p>
-                          </div>
-                          <ul className="flex flex-wrap gap-1 sm:max-w-[220px] sm:justify-end">
-                            {p.stack.map((s) => (
-                              <li
-                                key={s}
-                                className="rounded-md border border-white/10 bg-white/[0.03] px-1.5 py-0.5 font-mono text-[9px] text-slate-500"
-                              >
-                                {s}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
+                        <h3 className="font-display text-base font-bold leading-tight tracking-tight text-white sm:text-lg">
+                          {p.title}
+                        </h3>
+                        <p className="mt-1 max-w-4xl text-[12px] leading-snug text-slate-400 sm:text-[12.5px]">
+                          {p.pitch}
+                        </p>
+                        <ul className="mt-2 flex flex-wrap gap-1">
+                          {p.stack.map((s) => (
+                            <li
+                              key={s}
+                              className="rounded border border-white/[0.08] bg-white/[0.02] px-1.5 py-px font-mono text-[9px] text-slate-500"
+                            >
+                              {s}
+                            </li>
+                          ))}
+                        </ul>
+                      </header>
 
-                      {/* Features densifiées — 2 cols desktop, listes serrées */}
-                      <div className="relative mt-3 grid gap-x-5 gap-y-3 sm:grid-cols-2 lg:grid-cols-2">
+                      {/*
+                        Flux multi-colonnes : les blocs se tassent les uns sous les autres
+                        (plus de grand vide à droite d’une longue liste).
+                      */}
+                      <div className="relative mt-2.5 columns-1 gap-x-6 sm:columns-2 lg:columns-3">
                         {p.features.map((block) => (
-                          <div key={block.group} className="min-w-0">
+                          <div
+                            key={block.group}
+                            className="mb-2.5 break-inside-avoid"
+                          >
                             <h4
-                              className="mb-1 flex items-baseline gap-1.5 text-[11px] font-bold uppercase tracking-wide"
+                              className="mb-0.5 text-[10px] font-bold uppercase tracking-wide"
                               style={{ color: p.accent }}
                             >
                               {block.group}
-                              <span className="font-mono text-[9px] font-normal normal-case tracking-normal text-slate-600">
-                                · {block.items.length}
+                              <span className="ml-1 font-mono text-[9px] font-normal normal-case tracking-normal text-slate-600">
+                                ({block.items.length})
                               </span>
                             </h4>
-                            <ul className="columns-1 gap-x-4 text-[11.5px] leading-[1.35] text-slate-400 sm:text-[12px]">
+                            <ul className="text-[11.5px] leading-[1.4] text-slate-400">
                               {block.items.map((item) => (
-                                <li
-                                  key={item}
-                                  className="mb-0.5 break-inside-avoid pl-2.5"
-                                  style={{
-                                    backgroundImage: `radial-gradient(circle, ${p.accent}99 1px, transparent 1.2px)`,
-                                    backgroundPosition: "0 0.45em",
-                                    backgroundSize: "3px 3px",
-                                    backgroundRepeat: "no-repeat",
-                                  }}
-                                >
-                                  {item}
+                                <li key={item} className="flex gap-1.5 py-[1px]">
+                                  <span
+                                    className="mt-[0.45em] h-1 w-1 shrink-0 rounded-full opacity-70"
+                                    style={{ background: p.accent }}
+                                    aria-hidden="true"
+                                  />
+                                  <span className="min-w-0">{item}</span>
                                 </li>
                               ))}
                             </ul>
