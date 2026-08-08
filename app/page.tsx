@@ -418,106 +418,104 @@ export default function Home() {
           </section>
 
           {/* Work */}
-          <section id="travail" className="scroll-mt-24 px-5 py-20 sm:px-8 sm:py-28">
+          <section id="travail" className="scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20">
             <div className="mx-auto max-w-6xl">
-              <div className="mb-12 flex flex-col gap-4 sm:mb-16 sm:flex-row sm:items-end sm:justify-between">
+              <div className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[#8ec5ff]">
+                  <p className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-[#8ec5ff]">
                     Réalisations
                   </p>
-                  <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
                     Ce que je construis
                   </h2>
                 </div>
-                <p className="max-w-sm text-sm text-slate-500">
-                  Trois projets distincts, chacun avec son périmètre fonctionnel complet — pas un
-                  résumé marketing.
+                <p className="max-w-sm text-xs text-slate-500 sm:text-right sm:text-sm">
+                  Trois projets distincts — périmètre fonctionnel complet.
                 </p>
               </div>
 
-              <div className="grid gap-6 sm:gap-8">
+              <div className="grid gap-4">
                 {PROJECTS.map((p, i) => {
                   const totalFeatures = p.features.reduce((n, g) => n + g.items.length, 0)
                   return (
                     <article
                       key={p.title}
-                      className="card-shine group relative overflow-hidden rounded-3xl border border-white/[0.07] bg-[#0b0f18] p-6 transition-colors hover:border-white/12 sm:p-8 md:p-10"
+                      className="card-shine group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0b0f18] p-4 transition-colors hover:border-white/12 sm:p-5 md:p-6"
                     >
                       <div
-                        className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full opacity-20 blur-3xl transition-opacity group-hover:opacity-35"
+                        className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full opacity-15 blur-3xl"
                         style={{ background: p.accent }}
                         aria-hidden="true"
                       />
 
-                      {/* En-tête projet */}
-                      <div className="relative flex flex-col gap-5 border-b border-white/[0.06] pb-6 md:flex-row md:items-start md:justify-between">
-                        <div className="max-w-2xl">
-                          <div className="mb-3 flex flex-wrap items-center gap-2.5">
-                            <span className="font-mono text-[11px] text-slate-600">
-                              {String(i + 1).padStart(2, "0")}
-                            </span>
-                            <span
-                              className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider"
-                              style={{
-                                background: `${p.accent}18`,
-                                color: p.accent,
-                                border: `1px solid ${p.accent}33`,
-                              }}
-                            >
-                              {p.tag}
-                            </span>
-                            <span className="rounded-full border border-white/10 px-2.5 py-0.5 font-mono text-[10px] text-slate-500">
-                              {totalFeatures} fonctionnalités
-                            </span>
-                          </div>
-                          <h3 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl md:text-[1.65rem]">
-                            {p.title}
-                          </h3>
-                          <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-[15px]">
-                            {p.pitch}
-                          </p>
+                      {/* En-tête compact */}
+                      <div className="relative flex flex-col gap-2 border-b border-white/[0.06] pb-3 sm:gap-2.5 sm:pb-3.5">
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                          <span className="font-mono text-[10px] text-slate-600">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span
+                            className="rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider"
+                            style={{
+                              background: `${p.accent}18`,
+                              color: p.accent,
+                              border: `1px solid ${p.accent}33`,
+                            }}
+                          >
+                            {p.tag}
+                          </span>
+                          <span className="font-mono text-[10px] text-slate-600">
+                            {totalFeatures} features
+                          </span>
                         </div>
-                        <ul className="flex flex-wrap gap-2 md:max-w-[240px] md:justify-end">
-                          {p.stack.map((s) => (
-                            <li
-                              key={s}
-                              className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] text-slate-400"
-                            >
-                              {s}
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                          <div className="min-w-0 flex-1">
+                            <h3 className="font-display text-lg font-bold leading-snug tracking-tight text-white sm:text-xl">
+                              {p.title}
+                            </h3>
+                            <p className="mt-1.5 text-[12.5px] leading-snug text-slate-400 sm:text-[13px]">
+                              {p.pitch}
+                            </p>
+                          </div>
+                          <ul className="flex flex-wrap gap-1 sm:max-w-[220px] sm:justify-end">
+                            {p.stack.map((s) => (
+                              <li
+                                key={s}
+                                className="rounded-md border border-white/10 bg-white/[0.03] px-1.5 py-0.5 font-mono text-[9px] text-slate-500"
+                              >
+                                {s}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
 
-                      {/* Fonctionnalités par groupe */}
-                      <div className="relative mt-6 grid gap-6 sm:grid-cols-2">
+                      {/* Features densifiées — 2 cols desktop, listes serrées */}
+                      <div className="relative mt-3 grid gap-x-5 gap-y-3 sm:grid-cols-2 lg:grid-cols-2">
                         {p.features.map((block) => (
-                          <div key={block.group}>
+                          <div key={block.group} className="min-w-0">
                             <h4
-                              className="mb-3 flex items-center gap-2 text-[13px] font-bold tracking-wide"
+                              className="mb-1 flex items-baseline gap-1.5 text-[11px] font-bold uppercase tracking-wide"
                               style={{ color: p.accent }}
                             >
-                              <span
-                                className="h-1 w-1 rounded-full"
-                                style={{ background: p.accent }}
-                                aria-hidden="true"
-                              />
                               {block.group}
-                              <span className="font-mono text-[10px] font-normal text-slate-600">
-                                ({block.items.length})
+                              <span className="font-mono text-[9px] font-normal normal-case tracking-normal text-slate-600">
+                                · {block.items.length}
                               </span>
                             </h4>
-                            <ul className="space-y-2">
+                            <ul className="columns-1 gap-x-4 text-[11.5px] leading-[1.35] text-slate-400 sm:text-[12px]">
                               {block.items.map((item) => (
                                 <li
                                   key={item}
-                                  className="flex items-start gap-2 text-[12.5px] leading-snug text-slate-400 sm:text-[13px]"
+                                  className="mb-0.5 break-inside-avoid pl-2.5"
+                                  style={{
+                                    backgroundImage: `radial-gradient(circle, ${p.accent}99 1px, transparent 1.2px)`,
+                                    backgroundPosition: "0 0.45em",
+                                    backgroundSize: "3px 3px",
+                                    backgroundRepeat: "no-repeat",
+                                  }}
                                 >
-                                  <span
-                                    className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-slate-600"
-                                    aria-hidden="true"
-                                  />
-                                  <span>{item}</span>
+                                  {item}
                                 </li>
                               ))}
                             </ul>
