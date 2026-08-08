@@ -245,11 +245,10 @@ export function SiteInteractive({ children }: { children: React.ReactNode }) {
       {/* Clone children is not needed — we inject nav actions via portal-like fixed UI */}
       {children}
 
-      {/* Floating nav actions (install + open chat hook for buttons with data attributes) */}
+      {/* Floating nav actions — pointer-events only on the right cluster so center nav links stay clickable */}
       <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-16 sm:h-[4.25rem]">
-        <div className="pointer-events-auto mx-auto flex h-full max-w-6xl items-center justify-end gap-2 px-5 sm:px-8">
-          {/* spacer for logo left - we overlay only right cluster */}
-          <div className="flex items-center gap-2">
+        <div className="mx-auto flex h-full max-w-6xl items-center justify-end px-5 sm:px-8">
+          <div className="pointer-events-auto flex items-center gap-2">
             <button
               type="button"
               onClick={() => void handleInstall()}

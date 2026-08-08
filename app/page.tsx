@@ -1,14 +1,8 @@
 import { OpenChatButton } from "@/components/open-chat-button";
 import { DiscoverProject, type ProjectDemo } from "@/components/discover-project";
+import { HashLink, LogoLink, SiteNav } from "@/components/site-nav";
 
 const CONTACT_EMAIL = "heisenweb33@protonmail.com";
-
-const NAV = [
-  { href: "#travail", label: "Réalisations" },
-  { href: "#competences", label: "Compétences" },
-  { href: "#methode", label: "Méthode" },
-  { href: "#contact", label: "Contact" },
-];
 
 const TECH = [
   "Next.js",
@@ -302,28 +296,20 @@ export default function Home() {
       <div className="relative z-10 min-h-screen text-[#eef2ff]">
         {/* Nav — CTA Discutons + Install gérés par SiteInteractive (overlay droite) */}
         <header className="site-nav fixed inset-x-0 top-0 z-50 border-b border-white/[0.06] bg-[#05070d]/85 backdrop-blur-xl">
-          <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-[4.25rem] sm:px-8">
-            <a href="#top" className="flex items-center gap-2.5">
+          <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 sm:h-[4.25rem] sm:px-8">
+            <LogoLink>
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#8ec5ff] to-[#5ba8f5] text-[11px] font-black tracking-tighter text-[#0a0f18] shadow-[0_0_24px_rgba(142,197,255,0.35)]">
                 HW
               </span>
-              <span className="font-display text-[15px] font-semibold tracking-tight">HeisenWeb</span>
-            </a>
+              <span className="font-display text-[15px] font-semibold tracking-tight">
+                HeisenWeb
+              </span>
+            </LogoLink>
 
-            <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
-              {NAV.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
+            <SiteNav />
 
             {/* Espace réservé aux boutons flottants (Installer + Discutons) */}
-            <div className="w-[9.5rem] sm:w-[13.5rem]" aria-hidden="true" />
+            <div className="w-[9.5rem] shrink-0 sm:w-[13.5rem]" aria-hidden="true" />
           </div>
         </header>
 
@@ -351,12 +337,12 @@ export default function Home() {
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-3 sm:gap-4">
-                <a
+                <HashLink
                   href="#travail"
                   className="btn-glow rounded-full bg-[#8ec5ff] px-6 py-3.5 text-sm font-bold text-[#0a0f18] transition-transform hover:scale-[1.02]"
                 >
                   Voir les réalisations
-                </a>
+                </HashLink>
                 <OpenChatButton className="rounded-full border border-white/15 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/30 hover:bg-white/[0.06]">
                   Me contacter
                 </OpenChatButton>
