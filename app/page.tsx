@@ -26,27 +26,216 @@ const TECH = [
   "API REST",
 ];
 
-const PROJECTS = [
+type Project = {
+  tag: string
+  title: string
+  pitch: string
+  stack: string[]
+  accent: string
+  /** Groupes de fonctionnalités exhaustives */
+  features: { group: string; items: string[] }[]
+}
+
+const PROJECTS: Project[] = [
   {
-    tag: "E-commerce & ops",
-    title: "Plateforme boutique + panel admin",
-    desc: "Catalogue temps réel, panier, commandes, messagerie client, fidélité, notifications push, carte de tournée et flux de vérification d'identité.",
-    stack: ["Next.js", "PostgreSQL", "WebAuthn", "PWA"],
+    tag: "E-commerce opérationnel",
+    title: "Boutique anonyme + cockpit vendeur",
+    pitch:
+      "Plateforme de vente complète pensée pour un usage réel : clients anonymes par clé secrète, commandes multi-modes, messagerie, fidélité, paiements crypto, et un panel admin ultra-dense pour piloter l'activité au quotidien.",
+    stack: ["Next.js", "PostgreSQL", "Drizzle", "WebAuthn", "PWA", "Web Push", "Monero / NOWPayments"],
     accent: "#8ec5ff",
+    features: [
+      {
+        group: "Espace client",
+        items: [
+          "Création de compte anonyme (pseudo + token générés, sans email obligatoire)",
+          "Connexion par clé secrète ou biométrie (Face ID / empreinte — WebAuthn)",
+          "Reconnexion multi-appareils via le même token",
+          "Catalogue produits multi-catégories, stock temps réel, badges (arrivage, promo, rupture…)",
+          "Fiches produit : variantes de quantités/prix, médias image & vidéo, notes clients",
+          "Panier, codes promo globaux et codes fidélité à usage unique",
+          "Commande : livraison domicile, meet-up, ou Locker Mondial Relay",
+          "Créneaux horaires & dates de livraison / rendez-vous",
+          "Suivi de commande (timeline de statuts) et historique",
+          "Messagerie par commande + discussions générales avec le vendeur",
+          "Messages multimédias (image, vidéo, notes vocales)",
+          "Notifications push (navigateurs + iOS via PWA / écran d'accueil)",
+          "Cloche d'alertes in-app + deep-links vers le bon fil",
+          "Espace fidélité : points, paliers Bronze→Platine, bons échangeables",
+          "Parrainage (code filleul / parrain, bonus à la 1ʳᵉ livraison)",
+          "Programme de notation produits post-livraison (qualité, quantité, packaging, livraison)",
+          "Popup news / annonces avec codes promo intégrés",
+          "Guide « Comment ça marche » (sections obligatoires à la 1ʳᵉ création)",
+          "Mode application (PWA) + badge d'icône pour messages non lus",
+        ],
+      },
+      {
+        group: "Paiement & logistique locker",
+        items: [
+          "Paiement Monero (XMR) via passerelle (adresses, suivi de dépôt)",
+          "Option Paysafecard pour certains flux locker",
+          "Token de suivi TRK_ dédié locker (sécurisé, rappelable)",
+          "Rappels automatiques de retrait locker (cron)",
+          "Confirmation dépôt client / validation réception vendeur",
+        ],
+      },
+      {
+        group: "Sécurité & conformité d'accès",
+        items: [
+          "Vérification d'identité 1ʳᵉ commande (selfie photo + vidéo + anti-bypass)",
+          "Choix / bascule de caméra si selfie HS + import galerie",
+          "Validation / refus KYC côté admin (avec justification client)",
+          "Validation KYC manuelle même sans pièces jointes",
+          "Récupération de compte (clé perdue) + fusion de dossiers",
+          "Rétablissement d'accès admin (lien one-time, obligation de nouveau mdp)",
+          "Captcha anti-robot (Turnstile) à la création / login",
+          "Limite de création de comptes par IP + blocage VPN/proxy",
+          "Journal des connexions (IP, géoloc, appareil, heure de déconnexion)",
+        ],
+      },
+      {
+        group: "Panel administrateur",
+        items: [
+          "Dashboard (KPIs, dernières connexions, dernières commandes)",
+          "Commandes en cours, Locker MR, clôturées",
+          "Messagerie vendeur (inbox, statuts discussion, pièces jointes)",
+          "Notifications broadcast (ciblage all / sélection d'utilisateurs)",
+          "Gestion produits (catégories, ordre, stock, badges, promos article, médias)",
+          "Codes promo globaux (%, € fixe, produit offert, minimum d'achat)",
+          "Fidélité admin (soldes, codes générés, anomalies, ajustements)",
+          "Notations : relance d'avis, rattachement rétroactif product_ids archives",
+          "Carte interactive de tournée (départ glissable, OSRM, optimisation d'ordre)",
+          "Logistique & réglages panier (frais, seuils, créneaux)",
+          "Paiement crypto (paramétrage XMR)",
+          "Récap commandes (recherche, période, points fidélité, détail fil)",
+          "Utilisateurs (flags, surnoms, points, fiche 360°, validation KYC)",
+          "Vérifications d'identité, récupérations de compte",
+          "News multi-slides, staff / whitelist, multi-admins, profits",
+          "Deep-links admin (ouvrir un fil depuis une notif)",
+        ],
+      },
+    ],
   },
   {
-    tag: "Marketplace locale",
-    title: "ApéroMaison — livraison & admin",
-    desc: "Vitrine produit, commande en ligne, suivi, messagerie, et tournée de livraison avec carte interactive et optimisation d'itinéraire.",
-    stack: ["Next.js", "Leaflet", "OSRM"],
+    tag: "Commerce local & livraison",
+    title: "ApéroMaison — cave en ligne + tournée",
+    pitch:
+      "Site vitrine et commande pour une cave / apéro à domicile : catalogue par catégories, panier, suivi client, messagerie, et un admin centré sur la préparation des livraisons avec carte de tournée optimisée.",
+    stack: ["Next.js", "TypeScript", "Leaflet", "OSRM", "Nominatim", "Vercel"],
     accent: "#d4a574",
+    features: [
+      {
+        group: "Vitrine & conversion",
+        items: [
+          "Landing hero + sections valeurs / comment ça marche",
+          "Contrôle d'âge (age gate) avant accès catalogue",
+          "Catalogue par catégories (bières, vins, spiritueux, boxes…)",
+          "Fiches produit avec variantes et ajout panier",
+          "Panier persistant (contexte client)",
+          "Parcours de commande guidé (adresse, créneaux, récap)",
+          "Zones de livraison cartographiées (polygones, statuts actif / saturé / indispo)",
+          "Détection de zone à partir de l'adresse saisie",
+          "Page suivi de commande pour le client",
+          "Widget contact / discussion sans friction",
+          "Pages institutionnelles (nous, comment commander…)",
+        ],
+      },
+      {
+        group: "Espace client & messages",
+        items: [
+          "Compte client (espace dédié)",
+          "Historique / statut des commandes",
+          "Messagerie liée aux commandes",
+          "Fils de discussion généraux (support)",
+          "Pièces jointes sur les échanges",
+          "Notifications d'activité côté admin (messages commandes / contact)",
+        ],
+      },
+      {
+        group: "Administration",
+        items: [
+          "Tableau de bord (visites, pages vues, top pages, appareils)",
+          "Commandes en cours + archives",
+          "Changement de statut commande en un clic",
+          "Chat admin ↔ client par commande",
+          "Messagerie contact + discussions archivées",
+          "Tournée de livraison dédiée (écran plein admin)",
+        ],
+      },
+      {
+        group: "Tournée de livraison (carte)",
+        items: [
+          "Carte interactive OpenStreetMap (Leaflet)",
+          "Point de départ définissable (clic carte ou marqueur glissable)",
+          "Géocodage des adresses clients (Nominatim + cache)",
+          "Codes couleur d'urgence (aujourd'hui / J+1 / J+2 / J+3+ / sans date)",
+          "Sélection unitaire ou en masse des arrêts",
+          "Masquage des commandes déjà livrées",
+          "Itinéraire routier réel (OSRM), pas à vol d'oiseau",
+          "Optimisation de l'ordre des arrêts (OSRM Trip / TSP)",
+          "Distance km + durée estimée",
+          "Liste latérale des arrêts numérotés (retirer un stop, mémoriser la tournée)",
+          "Style carte adapté au branding sombre / or du site",
+        ],
+      },
+    ],
   },
   {
-    tag: "Full-stack produit",
-    title: "Applications métier sur mesure",
-    desc: "Du brief à la mise en production : auth, back-office, intégrations paiement, stock, rôles staff, et interfaces pensées pour le terrain.",
-    stack: ["TypeScript", "API", "Vercel"],
+    tag: "Marketplace multi-verticale",
+    title: "Marketplace cannabis légal / retail pro",
+    pitch:
+      "Socle e-commerce et communauté pour une marque retail : boutique, avis produits, chat communautaire, récupération de compte, staff, et pilotage admin type « ops » — une autre logique que la cave locale ou la boutique anonyme pure.",
+    stack: ["Next.js", "PostgreSQL", "PWA", "Leaflet", "Push", "Vercel"],
     accent: "#a5b4fc",
+    features: [
+      {
+        group: "Boutique & communauté",
+        items: [
+          "Shop client avec panier et checkout",
+          "Suivi de commande dédié (order tracker)",
+          "Avis / notes produits (modales de notation et revue)",
+          "Chat communautaire (espace d'échange entre membres)",
+          "Messagerie privée client ↔ vendeur",
+          "Notes vocales dans les fils",
+          "News / annonces popup",
+          "Fidélité et codes promo",
+          "Push notifications + cloche in-app",
+          "PWA / mode application mobile",
+        ],
+      },
+      {
+        group: "Accès, confiance & récupération",
+        items: [
+          "Auth client + parcours login vendeur",
+          "Vérification selfie (KYC) à l'onboarding sensible",
+          "Bannière / flux de récupération de compte",
+          "Rétablissement d'accès administré",
+          "Onboarding staff par invitation",
+          "Captcha / protections anti-abus",
+        ],
+      },
+      {
+        group: "Ops & logistique",
+        items: [
+          "Carte des livraisons / tournées (Leaflet)",
+          "Paramètres panier & logistique",
+          "Création de commande manuelle côté admin",
+          "Gestion produits, promos, news",
+          "Crypto / options de paiement configurables",
+        ],
+      },
+      {
+        group: "Back-office",
+        items: [
+          "Panel multi-onglets (commandes, users, vérifs, staff…)",
+          "Récap commandes et profits",
+          "Multi-admins et rôles",
+          "Journal de connexions",
+          "Notifications broadcast",
+          "Déploiement cloud (Vercel) + base managée",
+        ],
+      },
+    ],
   },
 ];
 
@@ -224,59 +413,103 @@ export default function Home() {
                   </h2>
                 </div>
                 <p className="max-w-sm text-sm text-slate-500">
-                  Sélection de typologies de projets livrés — e-commerce opérationnel, admin, et
-                  expériences sur mesure.
+                  Trois projets distincts, chacun avec son périmètre fonctionnel complet — pas un
+                  résumé marketing.
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:gap-5">
-                {PROJECTS.map((p, i) => (
-                  <article
-                    key={p.title}
-                    className="card-shine group relative overflow-hidden rounded-3xl border border-white/[0.07] bg-[#0b0f18] p-6 transition-colors hover:border-white/15 sm:p-8 md:p-10"
-                  >
-                    <div
-                      className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-20 blur-3xl transition-opacity group-hover:opacity-40"
-                      style={{ background: p.accent }}
-                      aria-hidden="true"
-                    />
-                    <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-                      <div className="max-w-2xl">
-                        <div className="mb-3 flex items-center gap-3">
-                          <span className="font-mono text-[11px] text-slate-600">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <span
-                            className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider"
-                            style={{
-                              background: `${p.accent}18`,
-                              color: p.accent,
-                              border: `1px solid ${p.accent}33`,
-                            }}
-                          >
-                            {p.tag}
-                          </span>
+              <div className="grid gap-6 sm:gap-8">
+                {PROJECTS.map((p, i) => {
+                  const totalFeatures = p.features.reduce((n, g) => n + g.items.length, 0)
+                  return (
+                    <article
+                      key={p.title}
+                      className="card-shine group relative overflow-hidden rounded-3xl border border-white/[0.07] bg-[#0b0f18] p-6 transition-colors hover:border-white/12 sm:p-8 md:p-10"
+                    >
+                      <div
+                        className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full opacity-20 blur-3xl transition-opacity group-hover:opacity-35"
+                        style={{ background: p.accent }}
+                        aria-hidden="true"
+                      />
+
+                      {/* En-tête projet */}
+                      <div className="relative flex flex-col gap-5 border-b border-white/[0.06] pb-6 md:flex-row md:items-start md:justify-between">
+                        <div className="max-w-2xl">
+                          <div className="mb-3 flex flex-wrap items-center gap-2.5">
+                            <span className="font-mono text-[11px] text-slate-600">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <span
+                              className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider"
+                              style={{
+                                background: `${p.accent}18`,
+                                color: p.accent,
+                                border: `1px solid ${p.accent}33`,
+                              }}
+                            >
+                              {p.tag}
+                            </span>
+                            <span className="rounded-full border border-white/10 px-2.5 py-0.5 font-mono text-[10px] text-slate-500">
+                              {totalFeatures} fonctionnalités
+                            </span>
+                          </div>
+                          <h3 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl md:text-[1.65rem]">
+                            {p.title}
+                          </h3>
+                          <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-[15px]">
+                            {p.pitch}
+                          </p>
                         </div>
-                        <h3 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl">
-                          {p.title}
-                        </h3>
-                        <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-[15px]">
-                          {p.desc}
-                        </p>
+                        <ul className="flex flex-wrap gap-2 md:max-w-[240px] md:justify-end">
+                          {p.stack.map((s) => (
+                            <li
+                              key={s}
+                              className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] text-slate-400"
+                            >
+                              {s}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <ul className="flex flex-wrap gap-2 md:max-w-[200px] md:justify-end">
-                        {p.stack.map((s) => (
-                          <li
-                            key={s}
-                            className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] text-slate-400"
-                          >
-                            {s}
-                          </li>
+
+                      {/* Fonctionnalités par groupe */}
+                      <div className="relative mt-6 grid gap-6 sm:grid-cols-2">
+                        {p.features.map((block) => (
+                          <div key={block.group}>
+                            <h4
+                              className="mb-3 flex items-center gap-2 text-[13px] font-bold tracking-wide"
+                              style={{ color: p.accent }}
+                            >
+                              <span
+                                className="h-1 w-1 rounded-full"
+                                style={{ background: p.accent }}
+                                aria-hidden="true"
+                              />
+                              {block.group}
+                              <span className="font-mono text-[10px] font-normal text-slate-600">
+                                ({block.items.length})
+                              </span>
+                            </h4>
+                            <ul className="space-y-2">
+                              {block.items.map((item) => (
+                                <li
+                                  key={item}
+                                  className="flex items-start gap-2 text-[12.5px] leading-snug text-slate-400 sm:text-[13px]"
+                                >
+                                  <span
+                                    className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-slate-600"
+                                    aria-hidden="true"
+                                  />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         ))}
-                      </ul>
-                    </div>
-                  </article>
-                ))}
+                      </div>
+                    </article>
+                  )
+                })}
               </div>
             </div>
           </section>
