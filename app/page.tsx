@@ -130,7 +130,7 @@ const PROJECTS: Project[] = [
       siteUrl: "https://apero-iota.vercel.app",
       adminUrl: "https://apero-iota.vercel.app/admin",
       adminUser: "admin",
-      adminPassword: "admin1234",
+      adminPassword: "admin1234.",
     },
     features: [
       {
