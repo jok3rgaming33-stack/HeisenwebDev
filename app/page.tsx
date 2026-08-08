@@ -1,4 +1,5 @@
 import { OpenChatButton } from "@/components/open-chat-button";
+import { DiscoverProject, type ProjectDemo } from "@/components/discover-project";
 
 const CONTACT_EMAIL = "heisenweb33@protonmail.com";
 
@@ -34,6 +35,8 @@ type Project = {
   accent: string
   /** Groupes de fonctionnalités exhaustives */
   features: { group: string; items: string[] }[]
+  /** Démo live optionnelle (site + admin) */
+  demo?: ProjectDemo
 }
 
 const PROJECTS: Project[] = [
@@ -123,6 +126,12 @@ const PROJECTS: Project[] = [
       "Site vitrine et commande pour une cave / apéro à domicile : catalogue par catégories, panier, suivi client, messagerie, et un admin centré sur la préparation des livraisons avec carte de tournée optimisée.",
     stack: ["Next.js", "TypeScript", "Leaflet", "OSRM", "Nominatim", "Vercel"],
     accent: "#d4a574",
+    demo: {
+      siteUrl: "https://apero-iota.vercel.app",
+      adminUrl: "https://apero-iota.vercel.app/admin",
+      adminUser: "admin",
+      adminPassword: "admin1234",
+    },
     features: [
       {
         group: "Vitrine & conversion",
@@ -514,6 +523,14 @@ export default function Home() {
                           </div>
                         ))}
                       </div>
+
+                      {p.demo && (
+                        <DiscoverProject
+                          projectTitle={p.title}
+                          accent={p.accent}
+                          demo={p.demo}
+                        />
+                      )}
                     </article>
                   )
                 })}
