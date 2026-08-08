@@ -35,6 +35,76 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
+    tag: "Commerce local & livraison",
+    title: "ApéroMaison — cave en ligne + tournée",
+    pitch:
+      "Site vitrine et commande pour une cave / apéro à domicile : catalogue par catégories, panier, suivi client, messagerie, et un admin centré sur la préparation des livraisons avec carte de tournée optimisée.",
+    stack: ["Next.js", "TypeScript", "Leaflet", "OSRM", "Nominatim", "Vercel"],
+    accent: "#d4a574",
+    demo: {
+      siteUrl: "https://apero-iota.vercel.app",
+      adminUrl: "https://apero-iota.vercel.app/admin",
+      adminUser: "admin",
+      adminPassword: "admin1234.",
+    },
+    features: [
+      {
+        group: "Vitrine & conversion",
+        items: [
+          "Landing hero + sections valeurs / comment ça marche",
+          "Contrôle d'âge (age gate) avant accès catalogue",
+          "Catalogue par catégories (bières, vins, spiritueux, boxes…)",
+          "Fiches produit avec variantes et ajout panier",
+          "Panier persistant (contexte client)",
+          "Parcours de commande guidé (adresse, créneaux, récap)",
+          "Zones de livraison cartographiées (polygones, statuts actif / saturé / indispo)",
+          "Détection de zone à partir de l'adresse saisie",
+          "Page suivi de commande pour le client",
+          "Widget contact / discussion sans friction",
+          "Pages institutionnelles (nous, comment commander…)",
+        ],
+      },
+      {
+        group: "Espace client & messages",
+        items: [
+          "Compte client (espace dédié)",
+          "Historique / statut des commandes",
+          "Messagerie liée aux commandes",
+          "Fils de discussion généraux (support)",
+          "Pièces jointes sur les échanges",
+          "Notifications d'activité côté admin (messages commandes / contact)",
+        ],
+      },
+      {
+        group: "Administration",
+        items: [
+          "Tableau de bord (visites, pages vues, top pages, appareils)",
+          "Commandes en cours + archives",
+          "Changement de statut commande en un clic",
+          "Chat admin ↔ client par commande",
+          "Messagerie contact + discussions archivées",
+          "Tournée de livraison dédiée (écran plein admin)",
+        ],
+      },
+      {
+        group: "Tournée de livraison (carte)",
+        items: [
+          "Carte interactive OpenStreetMap (Leaflet)",
+          "Point de départ définissable (clic carte ou marqueur glissable)",
+          "Géocodage des adresses clients (Nominatim + cache)",
+          "Codes couleur d'urgence (aujourd'hui / J+1 / J+2 / J+3+ / sans date)",
+          "Sélection unitaire ou en masse des arrêts",
+          "Masquage des commandes déjà livrées",
+          "Itinéraire routier réel (OSRM), pas à vol d'oiseau",
+          "Optimisation de l'ordre des arrêts (OSRM Trip / TSP)",
+          "Distance km + durée estimée",
+          "Liste latérale des arrêts numérotés (retirer un stop, mémoriser la tournée)",
+          "Style carte adapté au branding sombre / or du site",
+        ],
+      },
+    ],
+  },
+  {
     tag: "E-commerce opérationnel",
     title: "Boutique anonyme + cockpit vendeur",
     pitch:
@@ -114,76 +184,6 @@ const PROJECTS: Project[] = [
     ],
   },
   {
-    tag: "Commerce local & livraison",
-    title: "ApéroMaison — cave en ligne + tournée",
-    pitch:
-      "Site vitrine et commande pour une cave / apéro à domicile : catalogue par catégories, panier, suivi client, messagerie, et un admin centré sur la préparation des livraisons avec carte de tournée optimisée.",
-    stack: ["Next.js", "TypeScript", "Leaflet", "OSRM", "Nominatim", "Vercel"],
-    accent: "#d4a574",
-    demo: {
-      siteUrl: "https://apero-iota.vercel.app",
-      adminUrl: "https://apero-iota.vercel.app/admin",
-      adminUser: "admin",
-      adminPassword: "admin1234.",
-    },
-    features: [
-      {
-        group: "Vitrine & conversion",
-        items: [
-          "Landing hero + sections valeurs / comment ça marche",
-          "Contrôle d'âge (age gate) avant accès catalogue",
-          "Catalogue par catégories (bières, vins, spiritueux, boxes…)",
-          "Fiches produit avec variantes et ajout panier",
-          "Panier persistant (contexte client)",
-          "Parcours de commande guidé (adresse, créneaux, récap)",
-          "Zones de livraison cartographiées (polygones, statuts actif / saturé / indispo)",
-          "Détection de zone à partir de l'adresse saisie",
-          "Page suivi de commande pour le client",
-          "Widget contact / discussion sans friction",
-          "Pages institutionnelles (nous, comment commander…)",
-        ],
-      },
-      {
-        group: "Espace client & messages",
-        items: [
-          "Compte client (espace dédié)",
-          "Historique / statut des commandes",
-          "Messagerie liée aux commandes",
-          "Fils de discussion généraux (support)",
-          "Pièces jointes sur les échanges",
-          "Notifications d'activité côté admin (messages commandes / contact)",
-        ],
-      },
-      {
-        group: "Administration",
-        items: [
-          "Tableau de bord (visites, pages vues, top pages, appareils)",
-          "Commandes en cours + archives",
-          "Changement de statut commande en un clic",
-          "Chat admin ↔ client par commande",
-          "Messagerie contact + discussions archivées",
-          "Tournée de livraison dédiée (écran plein admin)",
-        ],
-      },
-      {
-        group: "Tournée de livraison (carte)",
-        items: [
-          "Carte interactive OpenStreetMap (Leaflet)",
-          "Point de départ définissable (clic carte ou marqueur glissable)",
-          "Géocodage des adresses clients (Nominatim + cache)",
-          "Codes couleur d'urgence (aujourd'hui / J+1 / J+2 / J+3+ / sans date)",
-          "Sélection unitaire ou en masse des arrêts",
-          "Masquage des commandes déjà livrées",
-          "Itinéraire routier réel (OSRM), pas à vol d'oiseau",
-          "Optimisation de l'ordre des arrêts (OSRM Trip / TSP)",
-          "Distance km + durée estimée",
-          "Liste latérale des arrêts numérotés (retirer un stop, mémoriser la tournée)",
-          "Style carte adapté au branding sombre / or du site",
-        ],
-      },
-    ],
-  },
-  {
     tag: "Plateforme multi-enseignes",
     title: "Trois sites, une plateforme interconnectée",
     pitch:
@@ -257,7 +257,7 @@ const PROJECTS: Project[] = [
       },
     ],
   },
-];
+]
 
 const SKILLS = [
   {
